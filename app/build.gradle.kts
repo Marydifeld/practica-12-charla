@@ -51,6 +51,7 @@ android {
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.hilt.work)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -79,4 +80,10 @@ dependencies {
     implementation(libs.play.services.code.scanner)
     implementation(libs.mlkit.barcode.scanning)
     implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    implementation(libs.androidx.exifinterface)
+    implementation(libs.androidx.work.runtime)
 }

@@ -25,5 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+          Le presta a la cámara un archivo de esta app para que escriba la foto.
+          La autoridad es el nombre con que se piden las direcciones (FotosTemporales);
+          exported="false" + grantUriPermissions: nadie entra, salvo a quien se le preste.
+        -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fotos"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rutas_de_fotos" />
+        </provider>
     </application>
 </manifest>

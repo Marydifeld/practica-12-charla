@@ -31,6 +31,7 @@ fun BarraMensaje(
     texto: String,
     onTexto: (String) -> Unit,
     onEnviar: () -> Unit,
+    onImagen: () -> Unit,
     habilitada: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -64,6 +65,9 @@ fun BarraMensaje(
                 )
             )
             FilledIconButton(onClick = onEnviar, enabled = puedeEnviar) {
+                Icon(painterResource(R.drawable.ic_imagen), contentDescription = "Foto")
+            }
+            FilledIconButton(onClick = onImagen, enabled = true) {
                 Icon(painterResource(R.drawable.ic_enviar), contentDescription = "Enviar")
             }
         }

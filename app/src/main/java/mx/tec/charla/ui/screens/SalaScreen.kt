@@ -87,6 +87,7 @@ fun SalaScreen(
                 texto = borrador,
                 onTexto = { borrador = it },
                 onEnviar = { if (onEnviar(borrador)) borrador = "" },
+                onImagen = {},
                 habilitada = estado.puedeEscribir
             )
         }

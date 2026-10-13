@@ -73,4 +73,10 @@ dependencies {
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
     debugImplementation(libs.androidx.ui.tooling)
+    // El QR: ZXing lo dibuja; el escáner de Google lo lee con la cámara;
+    // ML Kit lo lee de una imagen (viene dentro de la app: funciona sin descargar nada)
+    implementation(libs.zxing.core)
+    implementation(libs.play.services.code.scanner)
+    implementation(libs.mlkit.barcode.scanning)
+    implementation(libs.kotlinx.coroutines.play.services)
 }

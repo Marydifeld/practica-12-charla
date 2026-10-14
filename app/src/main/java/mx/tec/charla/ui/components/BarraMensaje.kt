@@ -33,6 +33,7 @@ fun BarraMensaje(
     onEnviar: () -> Unit,
     onImagen: () -> Unit,
     habilitada: Boolean,
+    imagenHabilitada: Boolean,
     modifier: Modifier = Modifier
 ) {
     val e = CharlaTema.espaciado
@@ -64,10 +65,10 @@ fun BarraMensaje(
                     unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest
                 )
             )
-            FilledIconButton(onClick = onEnviar, enabled = puedeEnviar) {
+            FilledIconButton(onClick = onImagen, enabled = puedeEnviar) {
                 Icon(painterResource(R.drawable.ic_imagen), contentDescription = "Foto")
             }
-            FilledIconButton(onClick = onImagen, enabled = true) {
+            FilledIconButton(onClick = onEnviar, enabled = true) {
                 Icon(painterResource(R.drawable.ic_enviar), contentDescription = "Enviar")
             }
         }

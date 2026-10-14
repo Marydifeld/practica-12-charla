@@ -19,7 +19,9 @@ import mx.tec.charla.data.remote.ChatConexion
 import mx.tec.charla.data.remote.EventoServidor
 import mx.tec.charla.data.remote.Orden
 import mx.tec.charla.data.remote.SalaApi
+import mx.tec.charla.domain.Mensaje
 import mx.tec.charla.domain.Solicitud
+import mx.tec.charla.domain.conImagenDelTexto
 import retrofit2.HttpException
 
 @HiltViewModel
@@ -67,9 +69,9 @@ class SalaViewModel @Inject constructor(
         when (evento) {
             // Al conectar (y al reconectar) llega la historia completa: reemplaza, no suma.
             is EventoServidor.Bienvenida -> _ui.update {
-                it.copy(mensajes = evento.mensajes, solicitudes = evento.solicitudes)
+                it.copy(mensajes = evento.mensajes.map(Mensaje::conImagenDelTexto), solicitudes = evento.solicitudes)
             }
-            is EventoServidor.Nuevo -> _ui.update { it.copy(mensajes = it.mensajes + evento.aMensaje()) }
+            is EventoServidor.Nuevo -> _ui.update { it.copy(mensajes = it.mensajes + evento.aMensaje().conImagenDelTexto()) }
             is EventoServidor.NuevaSolicitud -> _ui.update { it.copy(solicitudes = it.solicitudes + evento.aSolicitud()) }
         }
     }

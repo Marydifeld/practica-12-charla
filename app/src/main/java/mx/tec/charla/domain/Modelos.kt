@@ -31,3 +31,15 @@ sealed interface EstadoConexion {
 /** Los nombres que pone el servidor. Nadie más puede usarlos. */
 const val ANFITRION = "anfitrión"
 const val SALA = "sala"
+
+private const val MARCA_IMAGEN = "[imagen]"
+
+
+private val TEXTO_CON_IMAGEN = Regex("""\[imagen]([0-9a-f]{32}\.(?:jpg|png|webp))""")
+
+fun textoConImagen(clave: String): String = "$MARCA_IMAGEN$clave"
+
+fun Mensaje.conImagenDelTexto(): Mensaje {
+    val clave = TEXTO_CON_IMAGEN.matchEntire(texto)?.groupValues?.get(1) ?: return this
+    return copy(texto = "", imagen = clave)
+}

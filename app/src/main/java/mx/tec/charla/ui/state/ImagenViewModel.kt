@@ -19,6 +19,7 @@ import mx.tec.charla.data.local.SalaStore
 import mx.tec.charla.data.remote.ChatConexion
 import mx.tec.charla.data.remote.Orden
 import mx.tec.charla.data.remote.SalaApi
+import mx.tec.charla.domain.textoConImagen
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -56,7 +57,7 @@ class ImagenViewModel @Inject constructor(
                 )
                 val id = api.subirImagen("${destino.servidor}/imagenes", parte).id
 
-                if (conexion.enviar(Orden.Enviar(texto = "", imagen = id))) null
+                if (conexion.enviar(Orden.Enviar(texto = textoConImagen(id)))) null
                 else "La foto se subió, pero se perdió la conexión con la sala"
             } catch (e: ImagenIlegible) {
                 "No se pudo leer esa imagen"

@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import mx.tec.charla.ui.screens.SalaScreen
 import mx.tec.charla.ui.screens.UnirseScreen
 import mx.tec.charla.ui.state.Etapa
+import mx.tec.charla.ui.state.ImagenViewModel
 import mx.tec.charla.ui.state.SalaViewModel
 import mx.tec.charla.ui.state.UnirseViewModel
 
@@ -31,6 +32,12 @@ fun CharlaNavHost() {
 
         composable(Ruta.SALA) {
             val viewModel: SalaViewModel = hiltViewModel()
+            val imagenes: ImagenViewModel = hiltViewModel()
+            val imagen by imagenes.ui.collectAsStateWithLifecycle()
+            val galeria = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+                if (uri != null) imagenes.enviar(uri)
+            }
+
             val estado by viewModel.ui.collectAsStateWithLifecycle()
 
             // Se ve: conectar. Se va (otra pantalla, o la app al fondo): cerrar.
@@ -48,7 +55,10 @@ fun CharlaNavHost() {
                 onInvitar = viewModel::invitar,
                 onCerrarInvitacion = viewModel::cerrarInvitacion,
                 onUnirme = { nav.navigate(Ruta.UNIRSE) },
-                onReiniciar = viewModel::reiniciar
+                onReiniciar = viewModel::reiniciar,
+                imagen = imagen,
+                onImagen = { galeria.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
+                onErrorImagenVisto = imagenes::errorVisto
             )
         }
 

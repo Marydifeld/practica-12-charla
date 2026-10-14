@@ -65,10 +65,10 @@ fun BarraMensaje(
                     unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest
                 )
             )
-            FilledIconButton(onClick = onImagen, enabled = puedeEnviar) {
+            FilledIconButton(onClick = onImagen, enabled = imagenHabilitada) {
                 Icon(painterResource(R.drawable.ic_imagen), contentDescription = "Foto")
             }
-            FilledIconButton(onClick = onEnviar, enabled = true) {
+            FilledIconButton(onClick = onEnviar, enabled = puedeEnviar) {
                 Icon(painterResource(R.drawable.ic_enviar), contentDescription = "Enviar")
             }
         }
